@@ -1,0 +1,160 @@
+<Window x:Class="YouTube4KDownloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="4K Video Downloader" Height="760" Width="920"
+        MinHeight="680" MinWidth="820"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock x:Name="AppTitleText" Text="4K Video Downloader" FontSize="26" FontWeight="Bold"/>
+                <TextBlock x:Name="CopyrightNoticeText"
+                           Text="본인이 소유하거나 다운로드 허가를 받은 영상에만 사용하세요."
+                           Foreground="DarkRed" Margin="0,5,0,0"/>
+            </StackPanel>
+            <TextBlock Grid.Column="1" x:Name="LanguageLabel" Text="언어"
+                       VerticalAlignment="Center" Margin="16,0,8,0"/>
+            <ComboBox Grid.Column="2" x:Name="LanguageComboBox"
+                      SelectedIndex="0" SelectionChanged="LanguageComboBox_SelectionChanged">
+                <ComboBoxItem Content="한국어" Tag="ko"/>
+                <ComboBoxItem Content="English" Tag="en"/>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" x:Name="VideoUrlLabel" Text="영상 URL" VerticalAlignment="Center" Margin="0,0,12,0"/>
+            <TextBox Grid.Column="1" x:Name="UrlTextBox" VerticalContentAlignment="Center"/>
+            <Button Grid.Column="2" x:Name="PasteButton" Content="붙여넣기" Click="Paste_Click"/>
+            <Button Grid.Column="3" x:Name="InspectButton" Content="정보 확인" Click="Inspect_Click"/>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#F4F4F4" CornerRadius="6" Padding="12" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="ThumbnailImage" Width="140" Height="80" Stretch="UniformToFill"/>
+                <StackPanel Grid.Column="1" Margin="14,0,0,0">
+                    <TextBlock x:Name="TitleText" Text="영상 정보를 확인하면 제목이 표시됩니다."
+                               FontWeight="SemiBold" FontSize="15" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="MetaText" Margin="0,7,0,0" Foreground="DimGray" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="3" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="180"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                <TextBlock x:Name="SaveFolderLabel" Text="저장 폴더"/>
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="OutputFolderTextBox"/>
+                    <Button Grid.Column="1" x:Name="BrowseFolderButton" Content="찾아보기" Click="BrowseFolder_Click"/>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0,0,12,0">
+                <TextBlock x:Name="QualityLabel" Text="화질"/>
+                <ComboBox x:Name="QualityComboBox" Margin="0,5,0,0" SelectedIndex="0">
+                    <ComboBoxItem x:Name="Best4KItem" Content="최고 화질 (최대 4K)" Tag="2160"/>
+                    <ComboBoxItem x:Name="Quality4KItem" Content="4K 2160p" Tag="2160"/>
+                    <ComboBoxItem x:Name="QualityQHDItem" Content="QHD 1440p" Tag="1440"/>
+                    <ComboBoxItem x:Name="QualityFHDItem" Content="FHD 1080p" Tag="1080"/>
+                    <ComboBoxItem x:Name="QualityHDItem" Content="HD 720p" Tag="720"/>
+                    <ComboBoxItem x:Name="QualitySDItem" Content="SD 480p" Tag="480"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock x:Name="OutputFormatLabel" Text="출력 형식"/>
+                <ComboBox x:Name="FormatComboBox" Margin="0,5,0,0" SelectedIndex="0">
+                    <ComboBoxItem Content="MP4" Tag="mp4"/>
+                    <ComboBoxItem Content="MKV" Tag="mkv"/>
+                    <ComboBoxItem Content="MP3 오디오" Tag="mp3"/>
+                    <ComboBoxItem Content="M4A 오디오" Tag="m4a"/>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <WrapPanel Grid.Row="4" Margin="0,0,0,10">
+            <CheckBox x:Name="PlaylistCheckBox" Content="재생목록 전체 다운로드" Margin="4,6,18,6"/>
+            <CheckBox x:Name="SubtitleCheckBox" Content="자막 다운로드" Margin="4,6,18,6"/>
+            <CheckBox x:Name="AutoSubtitleCheckBox" Content="자동 생성 자막 포함" Margin="4,6,18,6"/>
+            <CheckBox x:Name="ThumbnailCheckBox" Content="썸네일 저장" Margin="4,6,18,6"/>
+            <CheckBox x:Name="EmbedMetadataCheckBox" Content="메타데이터 삽입" IsChecked="True" Margin="4,6,18,6"/>
+        </WrapPanel>
+
+        <Grid Grid.Row="5" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="CookiesLabel" Text="cookies.txt" VerticalAlignment="Center" Margin="0,0,12,0"/>
+            <TextBox Grid.Column="1" x:Name="CookiesTextBox" IsReadOnly="True"/>
+            <Button Grid.Column="2" x:Name="BrowseCookiesButton" Content="선택" Click="BrowseCookies_Click"/>
+            <Button Grid.Column="3" x:Name="ClearCookiesButton" Content="해제" Click="ClearCookies_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ProgressBar Grid.Row="0" x:Name="DownloadProgressBar" Height="24" Minimum="0" Maximum="100"/>
+            <TextBlock Grid.Row="1" x:Name="StatusText" Text="준비됨" Margin="0,7,0,8"/>
+            <TextBox Grid.Row="2" x:Name="LogTextBox" IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                     TextWrapping="NoWrap" FontFamily="Malgun Gothic" FontSize="12"/>
+        </Grid>
+
+        <Grid Grid.Row="7" Margin="0,14,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="DownloadButton" Content="다운로드 시작" Click="Download_Click"/>
+            <Button Grid.Column="1" x:Name="CancelButton" Content="취소" Click="Cancel_Click" IsEnabled="False"/>
+            <Button Grid.Column="2" x:Name="OpenFolderButton" Content="저장 폴더 열기" Click="OpenFolder_Click"/>
+            <Button Grid.Column="4" x:Name="UpdateToolsButton" Content="도구 업데이트" Click="UpdateTools_Click"/>
+            <Button Grid.Column="5" x:Name="ClearLogButton" Content="로그 지우기" Click="ClearLog_Click"/>
+        </Grid>
+    </Grid>
+</Window>
