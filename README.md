@@ -142,11 +142,6 @@ M4A
 
 가능한 경우 원본 프레임레이트를 유지하며 60fps 영상도 지원합니다.
 
-스크린샷
-
-프로그램 스크린샷을 추가하려면 저장소에 이미지를 업로드한 뒤 아래 형식으로 추가하세요.
-
-![YouTube4KDownloader](docs/screenshot.png)
 
 사용 방법
 
@@ -446,11 +441,6 @@ Supported Resolutions
 
 When possible, the original frame rate is preserved, including 60 FPS sources.
 
-Screenshots
-
-To add a screenshot, upload an image to the repository and use:
-
-![YouTube4KDownloader](docs/screenshot.png)
 
 How to Use
 
