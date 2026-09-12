@@ -159,22 +159,6 @@ Windows 언어 자동 감지 또는 수동 선택을 지원합니다. 외부 도
 
 예상 시간 학습값을 초기화하려면 앱 종료 후 `timing-history.json`을 삭제하세요. 대기열과 구간 목록은 재실행 시 복원되지 않습니다.
 
-## 소스 빌드
-
-Windows에 .NET 8 SDK를 설치하고 소스 루트의 `build_release.bat`를 실행합니다.
-
-```bat
-build_release.bat
-```
-
-결과: `release-assets/YouTube4KDownloader.exe`
-
-직접 게시하려면 소스 루트에서 다음 명령을 사용할 수 있습니다.
-
-```powershell
-dotnet publish .\YouTube4KDownloader\YouTube4KDownloader.csproj -c Release -r win-x64 --self-contained true -o .\release-assets
-```
-
 ## GitHub 릴리스 배포
 
 | 항목 | 값 |
