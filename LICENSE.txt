@@ -4,4 +4,4 @@ Third-party tools downloaded at runtime:
 - yt-dlp: https://github.com/yt-dlp/yt-dlp
 - FFmpeg Windows builds: https://www.gyan.dev/ffmpeg/builds/
 
-Review and comply with each project's license before redistribution.
+Review and comply with each project's license before redistribution..
