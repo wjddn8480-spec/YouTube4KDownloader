@@ -159,22 +159,6 @@ Default location: `%LOCALAPPDATA%\YouTube4KDownloader`
 
 To reset learned timings, close the app and delete `timing-history.json`. The download queue and section list are not restored after restart.
 
-## Building from Source
-
-Install the .NET 8 SDK on Windows, then run `build_release.bat` from the source root.
-
-```bat
-build_release.bat
-```
-
-Output: `release-assets/YouTube4KDownloader.exe`
-
-Alternatively, publish directly from the source root:
-
-```powershell
-dotnet publish .\YouTube4KDownloader\YouTube4KDownloader.csproj -c Release -r win-x64 --self-contained true -o .\release-assets
-```
-
 ## Publishing a GitHub Release
 
 | Item | Value |
